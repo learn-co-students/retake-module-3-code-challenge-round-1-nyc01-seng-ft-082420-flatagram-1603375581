@@ -3,11 +3,12 @@ document.addEventListener('DOMContentLoaded', () =>{
 
  
  let letDogPicUrl = "http://localhost:3000/images/1"
+ let dogPicCom = "http://localhost:3000/images/1/comments"
 
  const fetchImage = () => {
     fetch(letDogPicUrl)
     .then(resp => resp.json())
-    .then(dImage => renderDogImage(dImage))
+    .then(renderDogImage)
 }
 
 const renderDogImage = (dog) => {
@@ -21,9 +22,23 @@ const renderDogImage = (dog) => {
     image.src = dog.image
 
     let likes = parseInt(imageContainer.querySelector('.likes').textContent)
-    
-    
+    likes.textContent =
+  
     console.log(likes)
+
+    let comments = imageContainer.querySelector('.comments')
+
+
+    let comChildren = comments.children
+
+    let firstComment = comChildren[0]
+    firstComment.textContent = dog.comments[0].content
+    
+    let secondComment = comChildren[1]
+    secondComment.textContent = dog.comments[1].content
+    
+    let thirdComment = comChildren[2]
+    thirdComment.textContent = dog.comments[2].content
     
 }
 
@@ -42,7 +57,7 @@ fetchImage();
     including its title, likes and comments when 
     the page loads.
      √ - Get dogs info
-       - Put info to Dome
+     √ - Put info to Dome
 
     2.Click on the heart icon to increase image 
     likes, and still see them when I reload the page.
