@@ -7,25 +7,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const fetchImage = () => {
         fetch(getUrl)
         .then(resp => resp.json())
-        .then(renderImage);
+        .then(image => renderImage(image));
     }
 
-    const renderImage = (images) => {
-        const imageTitle = document.getElementsByClassName('title')
-        const imageSrc = document.getElementsByClassName('image')
-        const imageLikes = document.getElementsByClassName('likes')
-
+    const renderImage = (image) => {
+        const imageTitle = document.querySelector('title')
+        console.log(imageTitle)
+        const imageSrc = document.querySelector('image')
+        const imageLikes = document.querySelector('likes')
+        const likeBtn = document.querySelector('like_button')
+        const imageComments = document.querySelector('comments')
+        const commentForm = document.querySelector('comment_form')
 
         imageTitle.innerHTML = `
-        ${images.name}
+        imageTitle
         
         `
+        console.log(imageDiv)
+        imageDiv.append(imageTitle)
     }
 
     fetchImage();
 })
-
-
 
 
 
