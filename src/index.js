@@ -2,11 +2,11 @@ document.addEventListener('DOMContentLoaded', () =>{
 
 
  
- let letDogPicUrl = "http://localhost:3000/images/1"
+ let dogPicUrl = "http://localhost:3000/images/1"
  let dogPicCom = "http://localhost:3000/images/1/comments"
 
  const fetchImage = () => {
-    fetch(letDogPicUrl)
+    fetch(dogPicUrl)
     .then(resp => resp.json())
     .then(renderDogImage)
 }
@@ -21,10 +21,9 @@ const renderDogImage = (dog) => {
     let image = imageContainer.querySelector('.image')
     image.src = dog.image
 
-    let likes = parseInt(imageContainer.querySelector('.likes').textContent)
-    likes.textContent =
-  
+    let likes = parseInt(imageContainer.querySelector('.likes').textContent = dog.likes)
     console.log(likes)
+    
 
     let comments = imageContainer.querySelector('.comments')
 
@@ -42,8 +41,33 @@ const renderDogImage = (dog) => {
     
 }
 
+const clickHandler = () => {
+    document.addEventListener('click', e => {
+        if(e.target.matches('.like-button')){
+            
+            let container = document.querySelector('.image-container')
+            
+            let button = e.target
+            let dogId = container.dataset.id
+            
+            let likes = parseInt(button.previousElementSibling.textContent)
+            let newLikes = likes + 1
+
+            let options = {
+                
+            }
+            
+            fetch(dogPicUrl)
+            .then(resp => resp.json())
+            .then(console.log)
+        }
+    })
 
 
+}
+
+
+clickHandler();
 fetchImage();
 
 })
@@ -61,6 +85,9 @@ fetchImage();
 
     2.Click on the heart icon to increase image 
     likes, and still see them when I reload the page.
+     - clickHandler
+     - increase image likes with button click
+     -perist the data without reload
 
     3.Add a comment (no persistance needed)
 
