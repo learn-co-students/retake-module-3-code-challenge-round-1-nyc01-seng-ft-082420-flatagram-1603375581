@@ -41,6 +41,15 @@ const renderDogImage = (dog) => {
     
 }
 
+const renderComments = (comment) =>{
+    let commentSection = document.querySelector('.comments')
+    let commentLi = document.createElement('li')
+        commentLi.textContent = comment.comments
+
+    commentSection.appendChild(commentLi) 
+}
+
+
 const clickHandler = () => {
     document.addEventListener('click', e => {
         if(e.target.matches('.like-button')){
@@ -77,9 +86,6 @@ const submitHandler = () => {
         
         let form = e.target
         
-        let commentSection = document.querySelector('.comments')
-       
-        
         let comment = form.comment.value
 
         let options = {
@@ -93,12 +99,7 @@ const submitHandler = () => {
 
         fetch(dogPicCom, options)
         .then(resp => resp.json())
-        .then(comment => {
-            let commentSection = document.querySelector('.comments')
-            let commentLi = document.createElement('li')
-                commentli.textContent = comment
-
-        })
+        .then(renderComments)
 
         
     })
@@ -128,9 +129,9 @@ fetchImage();
      √ -perist the data without reload
 
     3.Add a comment (no persistance needed)
-     - submitHandler
-     - grab Comments section & input field
-     - on submit a POST requet
+     √- submitHandler
+     √- grab Comments section & input field
+     √- on submit a POST requet
 
 
 */
