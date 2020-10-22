@@ -99,8 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
           .then(response => response.json())
           .then(renderImage)
 
-/* I know my code above will break because my code is brittle, but ran out of time
-to refactor code. */
+/* I know my code above will break because my code is brittle, but ran out of time to refactor code. */
 
     })
     }
