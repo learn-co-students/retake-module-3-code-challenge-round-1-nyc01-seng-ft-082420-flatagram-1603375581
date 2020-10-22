@@ -54,19 +54,57 @@ const clickHandler = () => {
             let newLikes = likes + 1
 
             let options = {
-                
+                method: "PATCH",
+                headers: {
+                    "content-type": "application/json",
+                    "accept": "application/json"
+                },
+                body: JSON.stringify({likes: newLikes})
             }
             
-            fetch(dogPicUrl)
+            fetch(dogPicUrl, options)
             .then(resp => resp.json())
-            .then(console.log)
+            .then(renderDogImage)
         }
     })
 
 
 }
 
+const submitHandler = () => {
+    document.addEventListener('submit', e =>{
+        e.preventDefault()
+        
+        let form = e.target
+        
+        let commentSection = document.querySelector('.comments')
+       
+        
+        let comment = form.comment.value
 
+        let options = {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+                "accept": "application/json"
+            }, 
+            body: JSON.stringify({comments: comment})
+        }
+
+        fetch(dogPicCom, options)
+        .then(resp => resp.json())
+        .then(comment => {
+            let commentSection = document.querySelector('.comments')
+            let commentLi = document.createElement('li')
+                commentli.textContent = comment
+
+        })
+
+        
+    })
+}
+
+submitHandler();
 clickHandler();
 fetchImage();
 
@@ -85,10 +123,14 @@ fetchImage();
 
     2.Click on the heart icon to increase image 
     likes, and still see them when I reload the page.
-     - clickHandler
-     - increase image likes with button click
-     -perist the data without reload
+     √ - clickHandler
+     √ - increase image likes with button click
+     √ -perist the data without reload
 
     3.Add a comment (no persistance needed)
+     - submitHandler
+     - grab Comments section & input field
+     - on submit a POST requet
+
 
 */
