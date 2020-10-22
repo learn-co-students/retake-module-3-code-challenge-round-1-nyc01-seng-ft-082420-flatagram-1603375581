@@ -45,8 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     `
   }
 
-/* Deliverable 2: Click handler - when you click the heart, the image likes will
-increase and will persist */
+/* Deliverable 2: Click handler - when you click the heart, the image likes will increase and persist */
 
   const clickHandler = () => {
     document.addEventListener("click", (e) => {
