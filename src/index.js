@@ -12,19 +12,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const renderImage = (image) => {
         const imageTitle = document.querySelector('title')
-        console.log(imageTitle)
         const imageSrc = document.querySelector('image')
         const imageLikes = document.querySelector('likes')
         const likeBtn = document.querySelector('like_button')
         const imageComments = document.querySelector('comments')
         const commentForm = document.querySelector('comment_form')
 
-        imageTitle.innerHTML = `
-        imageTitle
-        
+        imageTitle.innerText = `
+        ${image.title}
         `
-        console.log(imageDiv)
-        imageDiv.append(imageTitle)
+
+        imageDiv.append(imageTitle.innerText)
     }
 
     fetchImage();
