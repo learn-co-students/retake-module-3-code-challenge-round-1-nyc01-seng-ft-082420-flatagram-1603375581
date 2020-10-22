@@ -24,7 +24,21 @@ document.addEventListener("DOMContentLoaded", () => {
       <button class="like-button" data-id=${image.id}>♥</button>
     `
 
-    /* if I have/had time, will come back to make this less brittle */
+    /* If I had more time, I would make this less brittle
+    by using a for of loop to create an li for each comment but didn't have enough time
+    to sufficiently test/edit and refactor the example below.     */
+
+    // const imageCard = document.querySelector(".image-card")
+    // for (comments of images.comments){
+    //   const imageLi = document.createElement("li")
+    //   imageLi.innerHTML = `
+    //     ${comments.content}
+    //   `
+    //   imageCard.append(imageLi)
+    // } 
+
+
+
     comments.innerHTML = `
     <li>${image.comments[0].content}</li>
     <li>${image.comments[1].content}</li>
@@ -40,9 +54,6 @@ increase and will persist */
       if (e.target.matches("button")){
         const button = e.target
         const buttonId = button.dataset.id
-
-        /* select the 0 in likes span, make it an integer, add to this, pass through 
-         options, and then fetch again */
 
         const spanOfLikes = document.querySelector("span").textContent[1]
         let parseLikes = parseInt(spanOfLikes)
@@ -72,11 +83,9 @@ increase and will persist */
         e.preventDefault()
 
         const form = e.target
-
-        // const formId = form.dataset.buttonId //come back to this - not working
-        // console.log(formId)
-
         let newComment = form[0].value
+
+        const newObj = {id: 1, imageId: 1, content: newComment}
 
         const options = {
           method: "POST",
@@ -84,13 +93,19 @@ increase and will persist */
             "content-type": "application/json",
             "accept": "application/json"
           },
-          
+          // body: JSON.stringify({comments: newComment})
+          body: JSON.stringify(newObj)
         }
+
+        fetch(baseUrl, options)
+          .then(response => response.json())
+          .then(renderImage)
+
+/* I know my code above will break because my code is brittle, but ran out of time
+to refactor code. */
 
     })
     }
-
-
 
   getImages()
   clickHandler()
