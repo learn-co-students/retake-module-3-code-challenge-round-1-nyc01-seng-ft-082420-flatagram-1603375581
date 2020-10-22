@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
         //.then(console.log())
     
     // }
+    
     // Comment Post request:
 
     // const submitHandler = () => {
