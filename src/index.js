@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <button class="like-button" data-id=${image.id}>♥</button>
     `
 
+    /* if I have/had time, will come back to make this less brittle */
     comments.innerHTML = `
     <li>${image.comments[0].content}</li>
     <li>${image.comments[1].content}</li>
@@ -71,8 +72,21 @@ increase and will persist */
         e.preventDefault()
 
         const form = e.target
-        const formId = form.dataset.id
-        console.log(formId)
+
+        // const formId = form.dataset.buttonId //come back to this - not working
+        // console.log(formId)
+
+        let newComment = form[0].value
+
+        const options = {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            "accept": "application/json"
+          },
+          
+        }
+
     })
     }
 
@@ -80,5 +94,6 @@ increase and will persist */
 
   getImages()
   clickHandler()
+  commentHandler()
 })
 
