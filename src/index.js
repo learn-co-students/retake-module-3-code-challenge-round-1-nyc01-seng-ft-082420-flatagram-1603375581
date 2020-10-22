@@ -31,6 +31,31 @@ const increaseLikes = () =>{
         },
         body: JSON.stringify({likes: likesNum})
     }
+            fetch(baseURL, options)
+              .then(response => response.json())
+              .then(image => {
+                getImage()
+              })
+    }
+
+    const decreaseLikes = () => {
+        const imageLikes = document.querySelector(".likes")
+        const likesNum = parseInt(imageLikes.dataset.likes) - 1
+        console.log(likesNum)
+
+        const newImage = {
+          likes: likesNum
+        }
+        const options = {
+          method: "PATCH",
+          headers: {
+            'content-type': 'application/json',
+            'accept': 'application/json'
+          },
+          body: JSON.stringify({
+            likes: likesNum
+          })
+        }
 
     fetch(baseURL, options)
     .then(response => response.json())
@@ -60,6 +85,10 @@ const clickListener = ()=>{document.addEventListener('click', (e)=>{
         console.log("like button")
         increaseLikes()
     }
+     else if (target.matches(".unlike-button")) {
+       console.log("like button")
+       decreaseLikes()
+     }
 })}
 
 const submitListener =()=>{
@@ -74,6 +103,8 @@ const submitListener =()=>{
         commentUl.append(newComment)
         
     }
+
+    
 
 
 })}
