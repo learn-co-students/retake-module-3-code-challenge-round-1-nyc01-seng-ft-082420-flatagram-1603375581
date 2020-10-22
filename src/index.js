@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const getImages = () => {
     fetch(baseUrl)
       .then(response => response.json())
-      // .then(console.log)
       .then(image => renderImage(image))
   }
 
