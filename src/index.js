@@ -1,5 +1,3 @@
-/* Deliverable 2: Click handler - when you click the heart, the image likes will
-increase and will persist */
 /* Deliverable 3: Add a comment - persistence not needed */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -13,9 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(image => renderImage(image))
   }
 
-  // const renderImages = images => {
-  //   images.forEach(image => renderImage(image))
-  // }
 
   const renderImage = image => {
     /* Must see title, likes, and comments */
@@ -23,20 +18,40 @@ document.addEventListener("DOMContentLoaded", () => {
     let likes = document.querySelector(".likes-section")
     let comments = document.querySelector(".comments")
     let dogImage = document.querySelector(".image")
-    // set dataset id
-    let imageCard = document.querySelector(".image-card")
+
+    /* set dataset id */
+    // let imageCard = document.querySelector(".image-card")
+    // imageCard.dataset.id = image.id
 
     title.textContent = image.title
-    likes.textContent = image.likes
     dogImage.src = image.image
+    likes.innerHTML = `
+      <span>${image.likes} Likes</span>
+      <button class="like-button" dataset-id=${image.id}>♥</button>
+    `
 
     comments.innerHTML = `
-    <li>${image.comments[0]}</li>
+    <li>${image.comments[0].content}</li>
+    <li>${image.comments[1].content}</li>
+    <li>${image.comments[2].content}</li>
     `
-    imageCard.dataset.id = image.id
+  }
+
+/* Deliverable 2: Click handler - when you click the heart, the image likes will
+increase and will persist */
+
+  const clickHandler = () => {
+    const likeButton = document.querySelector(".like-button")
+    likeButton.addEventListener("click", e => {
+      const button = e.target
+      button.dataset.id = image.id
+      console.log()
+
+    })
   }
 
 
   getImages()
+  clickHandler()
 })
 
