@@ -65,6 +65,16 @@ increase and will persist */
   }
 
 /* Deliverable 3: Add a comment - persistence not needed */
+  const commentHandler = () => {
+    const commentForm = document.querySelector(".comment-form")
+    commentForm.addEventListener("submit", (e) => {
+        e.preventDefault()
+
+        const form = e.target
+        const formId = form.dataset.id
+        console.log(formId)
+    })
+    }
 
 
 
